@@ -1,0 +1,13 @@
+[theme]
+primaryColor = "#B22222"              # Vermelho Maestro
+backgroundColor = "#FFFFFF"
+secondaryBackgroundColor = "#FDF6E3"  # Bege suave
+textColor = "#0F172A"
+font = "sans serif"
+
+[server]
+headless = true
+runOnSave = true
+
+[browser]
+gatherUsageStats = false

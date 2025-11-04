@@ -1,0 +1,166 @@
+/* ======== TEMA MAESTRO ======== */
+body {
+  font-family: 'Segoe UI', Roboto, sans-serif;
+}
+
+/* ----- Cabeçalho com engrenagens animadas ----- */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+  margin-bottom: 30px;
+  gap: 20px;
+  position: relative;
+}
+
+.header .gears-container {
+  display: flex;
+  align-items: flex-start;
+  gap: 5px;
+  position: relative;
+}
+
+.header .gears-right {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  align-items: center;
+}
+
+.title {
+  font-size: 40px;
+  font-weight: 800;
+  color: #B22222; /* vermelho Maestro */
+  letter-spacing: 1px;
+}
+
+/* ----- Engrenagens animadas (baseadas em Maestro.png) ----- */
+.gear {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gear svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Engrenagem Vermelha Grande (esquerda) */
+.gear-red {
+  width: 80px;
+  height: 80px;
+  color: #A52A2A; /* Marrom avermelhado da imagem */
+  animation: spin 10s linear infinite;
+}
+
+/* Engrenagem Verde Pequena (superior direita) */
+.gear-green {
+  width: 50px;
+  height: 50px;
+  color: #2D8659; /* Verde da imagem */
+  animation: spin 8s linear infinite reverse;
+}
+
+/* Engrenagem Amarela Média (inferior direita) */
+.gear-yellow {
+  width: 70px;
+  height: 70px;
+  color: #F5C518; /* Amarelo ouro da imagem */
+  animation: spin 12s linear infinite;
+}
+
+/* ----- Animação de rotação ----- */
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* ----- Cards da home ----- */
+div[data-testid="stMetricValue"] {
+  color: #2563EB !important;
+  font-weight: bold;
+}
+
+/* ----- Bordas suaves e sombras ----- */
+.stApp {
+  background-color: #FFFFFF;
+}
+
+div[data-testid="stHorizontalBlock"] {
+  box-shadow: 0 6px 24px rgba(2, 6, 23, 0.08);
+  border-radius: 12px;
+  padding: 15px;
+}
+
+.azure-section {
+  background-color: #f8fafc;
+  border: 1px solid #d4dbe6;
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin-bottom: 16px;
+}
+
+.azure-section__header {
+  font-weight: 600;
+  color: #1f3b73;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.azure-section__body ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.azure-section__body li {
+  margin-bottom: 4px;
+}
+
+.azure-section__body p {
+  margin: 0 0 8px 0;
+}
+
+.azure-pill-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 8px 0 12px 0;
+}
+
+.azure-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  background-color: #e2e8f6;
+  color: #1f3b73;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+}
+
+.azure-subtitle {
+  font-weight: 600;
+  color: #1f3b73;
+  margin: 16px 0 8px 0;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+}
+
+.azure-story {
+  border: 1px solid #d4dbe6;
+  border-radius: 10px;
+  padding: 12px 14px;
+  margin-bottom: 12px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 8px rgba(31, 59, 115, 0.08);
+}
+
+.azure-story__title {
+  font-weight: 700;
+  color: #1f3b73;
+  margin-bottom: 6px;
+}

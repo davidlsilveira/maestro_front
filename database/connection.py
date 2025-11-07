@@ -18,11 +18,17 @@ load_dotenv()
 
 def get_database_url():
     """Retorna a URL de conexão com o banco de dados."""
-    return os.getenv(
-        "DATABASE_URL",
-        f"postgresql://{os.getenv('POSTGRES_USER')}:{os.getenv('POSTGRES_PASSWORD')}@"
-        f"{os.getenv('POSTGRES_HOST')}:{os.getenv('POSTGRES_PORT')}/{os.getenv('POSTGRES_DB')}"
-    )
+    if url := os.getenv("DATABASE_URL"):
+        return url
+
+    user = os.getenv("POSTGRES_USER", "postgres")
+    password = os.getenv("POSTGRES_PASSWORD", "")
+    host = os.getenv("POSTGRES_HOST", "localhost")
+    port = os.getenv("POSTGRES_PORT", "5432")
+    database = os.getenv("POSTGRES_DB", "postgres")
+
+    credentials = f"{user}:{password}" if password else user
+    return f"postgresql://{credentials}@{host}:{port}/{database}"
 
 
 @contextmanager

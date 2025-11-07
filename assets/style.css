@@ -42,16 +42,18 @@ body {
   justify-content: center;
 }
 
-.gear svg {
+.gear img {
   width: 100%;
   height: 100%;
+  display: block;
 }
+
 
 /* Engrenagem Vermelha Grande (esquerda) */
 .gear-red {
   width: 80px;
   height: 80px;
-  color: #A52A2A; /* Marrom avermelhado da imagem */
+  color: #A52A2A;
   animation: spin 10s linear infinite;
 }
 
@@ -59,7 +61,7 @@ body {
 .gear-green {
   width: 50px;
   height: 50px;
-  color: #2D8659; /* Verde da imagem */
+  color: #2D8659;
   animation: spin 8s linear infinite reverse;
 }
 
@@ -67,7 +69,7 @@ body {
 .gear-yellow {
   width: 70px;
   height: 70px;
-  color: #F5C518; /* Amarelo ouro da imagem */
+  color: #F5C518;
   animation: spin 12s linear infinite;
 }
 
@@ -164,3 +166,4 @@ div[data-testid="stHorizontalBlock"] {
   color: #1f3b73;
   margin-bottom: 6px;
 }
+

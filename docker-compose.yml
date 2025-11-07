@@ -24,6 +24,13 @@ services:
       - OPENAI_API_KEY=${OPENAI_API_KEY:-}
       - AZURE_DEVOPS_TOKEN=${AZURE_DEVOPS_TOKEN:-}
       - JIRA_API_KEY=${JIRA_API_KEY:-}
+
+      # Observability (Grafana, Prometheus, Loki)
+      - GRAFANA_URL=${GRAFANA_URL:-http://200.229.76.122:3000}
+      - GRAFANA_USER=${GRAFANA_USER:-admin}
+      - GRAFANA_PASS=${GRAFANA_PASS:-maestro2024}
+      - LOKI_URL=${LOKI_URL:-http://200.229.76.122:3100}
+      - PROMETHEUS_METRICS_PORT=${PROMETHEUS_METRICS_PORT:-9464}
     volumes:
       - ./assets:/app/assets:ro
       - ./components:/app/components:ro

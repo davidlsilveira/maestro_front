@@ -20,6 +20,7 @@ env/
 *.md
 *.docx
 *.txt
+!requirements.txt
 
 # Git
 .git/

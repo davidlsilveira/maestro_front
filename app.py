@@ -369,12 +369,15 @@ def render_observabilidade():
 
         st.markdown("### 📈 Observabilidade – Grafana")
 
+        # URL interna (para chamadas do backend/servidor dentro do Docker)
         grafana_url = _get_setting("grafana_url", "GRAFANA_URL", "http://200.229.76.122:3000")
+        # URL pública (para browser do usuário - localhost ou IP externo)
+        grafana_url_public = _get_setting("grafana_url_public", "GRAFANA_URL_PUBLIC", grafana_url)
         grafana_user = _get_setting("grafana_user", "GRAFANA_USER", "admin")
         grafana_pass = _get_setting("grafana_pass", "GRAFANA_PASS", "maestro2024")
 
-        # URL do dashboard de logs
-        logs_dashboard_url = f"{grafana_url}/d/maestro-logs/maestro-logs-dashboard"
+        # URL do dashboard de logs (usando URL pública para o browser)
+        logs_dashboard_url = f"{grafana_url_public}/d/maestro-logs/maestro-logs-dashboard"
 
         st.info(
             "Ao abrir o painel será necessário autenticar no Grafana. "
@@ -387,7 +390,7 @@ def render_observabilidade():
             if st.button("📊 Abrir Grafana Home"):
                 logger.info("Abrindo Grafana home", extra={"action": "open_grafana"})
                 st.markdown(
-                    f'<meta http-equiv="refresh" content="0; url={grafana_url}">',
+                    f'<meta http-equiv="refresh" content="0; url={grafana_url_public}">',
                     unsafe_allow_html=True,
                 )
 
@@ -402,15 +405,7 @@ def render_observabilidade():
         st.markdown("---")
         st.markdown("#### 📝 Dashboard de Logs - Visualização Integrada")
 
-        # Credenciais
-        with st.expander("🔑 Credenciais de Acesso"):
-            st.code(
-                f"Usuario: {grafana_user}\n"
-                f"Senha: {grafana_pass}",
-                language="bash",
-            )
-
-        # Iframe do dashboard de logs por padrão
+        # Iframe do dashboard de logs (autenticação anônima configurada no Grafana)
         components.iframe(logs_dashboard_url, height=900, scrolling=True)
 
 # Testar conexão com banco de dados

@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  maestro-front:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: maestro-front-local
+    ports:
+      - "8501:8501"
+    env_file:
+      - .env.local
+    volumes:
+      - ./assets:/app/assets:ro
+      - ./components:/app/components:ro
+      - ./database:/app/database:ro
+      - ./observability:/app/observability:ro
+      - ./repositories:/app/repositories:ro
+      - ./app.py:/app/app.py:ro
+      - ./.streamlit:/app/.streamlit:ro
+    restart: unless-stopped
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    networks:
+      - default
+      - maestro_default
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8501/_stcore/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+networks:
+  maestro_default:
+    external: true

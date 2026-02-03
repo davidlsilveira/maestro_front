@@ -29,4 +29,5 @@ COPY . .
 EXPOSE 8501
 
 # Comando para iniciar o Streamlit
-CMD ["streamlit", "run", "app.py", "--server.port=8501", "--server.address=0.0.0.0", "--server.headless=true"]
+# Desabilita file watcher para evitar reloads que quebram o servidor de métricas
+CMD ["streamlit", "run", "app.py", "--server.port=8501", "--server.address=0.0.0.0", "--server.headless=true", "--server.fileWatcherType=none"]

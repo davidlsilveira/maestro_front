@@ -8,6 +8,7 @@ services:
     container_name: maestro-front
     ports:
       - "8501:8501"
+      - "9464:9464"  # Prometheus metrics
     environment:
       # Database
       - POSTGRES_DB=${POSTGRES_DB}
@@ -27,6 +28,7 @@ services:
 
       # Observability (Grafana, Prometheus, Loki)
       - GRAFANA_URL=${GRAFANA_URL:-http://200.229.76.122:3000}
+      - GRAFANA_URL_PUBLIC=${GRAFANA_URL_PUBLIC:-http://127.0.0.1:3000}
       - GRAFANA_USER=${GRAFANA_USER:-admin}
       - GRAFANA_PASS=${GRAFANA_PASS:-maestro2024}
       - LOKI_URL=${LOKI_URL:-http://200.229.76.122:3100}
@@ -40,6 +42,7 @@ services:
     restart: unless-stopped
     networks:
       - maestro-network
+      - maestro_default  # Rede do backend para comunicação com Prometheus
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8501/_stcore/health"]
       interval: 30s
@@ -50,3 +53,5 @@ services:
 networks:
   maestro-network:
     driver: bridge
+  maestro_default:
+    external: true  # Conecta à rede do backend onde Prometheus/Grafana estão
